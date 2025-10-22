@@ -12,6 +12,7 @@ An intelligent agent built with LangGraph that seamlessly handles both mathemati
 - **✨ Interactive Conversations**: Full conversation memory with ongoing dialogue support
 - **✨ Context-Aware Responses**: Remembers previous questions and answers
 - **✨ User-Friendly Interface**: Real-time input with graceful exit options
+- **✨ Graph Visualization**: Automatic generation of workflow diagram
 
 ## 📋 Prerequisites
 
@@ -130,6 +131,11 @@ The agent uses a graph-based architecture:
 3. **Tools Node**: Executes mathematical operations
 4. **Feedback Loop**: Returns to chatbot for final response
 
+**Visual Representation:**  
+When you run the agent, it automatically generates graph visualizations in two formats:
+- **Mermaid text file** (`.mmd`) - Always works, can be viewed at [mermaid.live](https://mermaid.live/edit)
+- **PNG image** (`.png`) - Optional, requires system graphviz (no extra setup needed if installation succeeded) This shows the complete workflow with all nodes, edges, and routing logic.
+
 ## 📚 Documentation
 
 For detailed implementation explanation, see [REPORT.md](REPORT.md) which includes:
@@ -138,6 +144,8 @@ For detailed implementation explanation, see [REPORT.md](REPORT.md) which includ
 - Complete code breakdown
 - Program flow explanation
 - Example outputs
+
+**Having issues with graph visualization?** See [TROUBLESHOOTING_GRAPH_VIZ.md](TROUBLESHOOTING_GRAPH_VIZ.md)
 
 ## 🛠️ Technical Stack
 

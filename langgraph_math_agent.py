@@ -225,6 +225,45 @@ def create_graph():
     return graph
 
 
+def save_graph_visualization(graph, output_path="./graph_architecture"):
+    """Save the LangGraph visualization as both PNG (if possible) and Mermaid text.
+    
+    Args:
+        graph: Compiled LangGraph agent
+        output_path: Path where to save the visualization (without extension)
+    
+    Returns:
+        Tuple of (png_path or None, mermaid_path)
+    """
+    png_path = None
+    mermaid_path = f"{output_path}.mmd"
+    
+    # Always generate Mermaid text (works without any special dependencies)
+    try:
+        mermaid_text = graph.get_graph().draw_mermaid()
+        with open(mermaid_path, "w") as f:
+            f.write(mermaid_text)
+        print(f"✓ Graph Mermaid diagram saved to: {mermaid_path}")
+        print(f"  View online at: https://mermaid.live/edit")
+    except Exception as e:
+        print(f"⚠️  Could not generate Mermaid text: {str(e)}")
+        return None, None
+    
+    # Try to generate PNG (optional, requires additional dependencies)
+    try:
+        png_path = f"{output_path}.png"
+        png_data = graph.get_graph().draw_mermaid_png()
+        with open(png_path, "wb") as f:
+            f.write(png_data)
+        print(f"✓ Graph PNG image saved to: {png_path}")
+    except Exception as e:
+        print(f"ℹ️  PNG generation skipped (optional): {str(e)}")
+        print(f"   You can visualize the .mmd file at https://mermaid.live/edit")
+        png_path = None
+    
+    return png_path, mermaid_path
+
+
 # ============================================================================
 # STEP 7: Demo and Testing
 # ============================================================================
@@ -269,6 +308,9 @@ def main():
     # Create the graph
     graph = create_graph()
     print("✓ Graph created successfully!")
+    
+    # Save graph visualization
+    save_graph_visualization(graph)
     
     print("\n" + "="*70)
     print("INSTRUCTIONS:")
@@ -330,6 +372,9 @@ def demo_mode():
     # Create the graph
     graph = create_graph()
     print("✓ Graph created successfully!")
+    
+    # Save graph visualization
+    save_graph_visualization(graph)
     
     # Test queries
     test_queries = [
