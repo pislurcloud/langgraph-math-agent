@@ -1,0 +1,15 @@
+# LangGraph Math Agent - Dependencies
+
+# Core LangChain and LangGraph
+langgraph>=0.2.0
+langchain>=0.3.0
+langchain-core>=0.3.0
+
+# Groq LLM Integration
+langchain-groq>=0.2.0
+
+# Environment Variables
+python-dotenv>=1.0.0
+
+# Type Hints
+typing-extensions>=4.8.0
